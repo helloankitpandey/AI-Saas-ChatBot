@@ -16,5 +16,8 @@ app.use(express.json());
 app.use(morgan("dev"));
 // creat first middlewares
 app.use("/api/v1", appRouter);
+app.get("/", (req, res) => {
+    return res.send("Hello from Backend");
+});
 export default app;
 //# sourceMappingURL=app.js.map
