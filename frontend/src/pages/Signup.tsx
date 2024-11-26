@@ -27,6 +27,7 @@ const Signup = () => {
 
     // here Toast used =?????
     try {
+      
       toast.loading("Signing Up", { id: "signup" });
       await auth?.signup(name, email, password);
       toast.success("Signed Up successfully", { id: "signup" });
@@ -38,6 +39,7 @@ const Signup = () => {
 
   // when user refresh it come to chats page after login
   useEffect(() => {
+    
     if(auth?.user){
       return navigate("/chat");
     }

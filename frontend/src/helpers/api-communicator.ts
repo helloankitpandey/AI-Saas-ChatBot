@@ -77,6 +77,8 @@ export const logoutUser = async () => {
 // Signup
 export const signupUser = async (name: string, email: string, password: string) => {
   const res = await axios.post("/user/signup", {name, email, password});
+  const jwt = res.data;
+  localStorage.setItem("token", jwt);
   if(res.status !== 201 ){
       throw new Error("Unable to Signup");
   }
