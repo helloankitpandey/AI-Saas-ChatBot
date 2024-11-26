@@ -25,5 +25,7 @@ app.use(morgan("dev"));
 
 // creat first middlewares
 app.use("/api/v1", appRouter);
-
+app.get("/",(req,res)=>{
+    res.send("Hello from Backend")
+})
 export default app;
