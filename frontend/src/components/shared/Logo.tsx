@@ -1,6 +1,4 @@
 import { Typography } from '@mui/material'
-import React from 'react'
-import { BiFontSize } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 const Logo = () => {

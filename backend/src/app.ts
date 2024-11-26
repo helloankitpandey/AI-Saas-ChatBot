@@ -13,7 +13,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
 //middleare for cors error
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({ origin: ["*"], credentials: true }));
 
 
 // middlewares
@@ -25,7 +25,8 @@ app.use(morgan("dev"));
 
 // creat first middlewares
 app.use("/api/v1", appRouter);
-app.get("/",(req,res)=>{
-    return res.send("Hello from Backend")
+app.get("/",(req, res) => {
+    return res.send("Hello from Akki Coder")
 })
+
 export default app;
