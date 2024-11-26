@@ -13,7 +13,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
 //middleare for cors error
-app.use(cors({ origin: ["*"], credentials: true }));
+app.use(cors({ origin: "https://ai-saas-chatbot.onrender.com", credentials: true }));
 
 
 // middlewares
