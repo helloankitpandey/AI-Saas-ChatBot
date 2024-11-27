@@ -19,32 +19,32 @@ export const loginUser = async (email: string, password: string) => {
 
 
 // Function to verify token on the client side (optional)
-export const verifyTokenFrontend = async () => {
-  try {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error("Token not found in localStorage");
-    }
+// export const verifyTokenFrontend = async () => {
+//   try {
+//     const token = localStorage.getItem("token");
+//     if (!token) {
+//       throw new Error("Token not found in localStorage");
+//     }
 
-    // Send verification request to the backend
-    const res = await axios.post(
-       "user/auth-status",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true, // Include cookies for signed token verification
-      }
-    );
+//     // Send verification request to the backend
+//     const res = await axios.get(
+//        "user/auth-status",
+//       {},
+//       // {
+//       //   headers: {
+//       //     Authorization: `Bearer ${token}`,
+//       //   },
+//       //   withCredentials: true, // Include cookies for signed token verification
+//       // }
+//     );
 
-    console.log("Token verified successfully:", res.data);
-    return res.data; // Return the verified data
-  } catch (error: any) {
-    console.error("Token verification failed:", error.response?.data || error.message); 
-    throw new Error(error.response?.data?.message || "Token verification failed");
-  }
-};
+//     console.log("Token verified successfully:", res.data);
+//     return res.data; // Return the verified data
+//   } catch (error: any) {
+//     console.error("Token verification failed:", error.response?.data || error.message); 
+//     throw new Error(error.response?.data?.message || "Token verification failed");
+//   }
+// };
 
 
 
@@ -115,8 +115,10 @@ export const logoutUser = async () => {
 // Signup
 export const signupUser = async (name: string, email: string, password: string) => {
   const res = await axios.post("/user/signup", {name, email, password});
-  const jwt = res.data;
-  localStorage.setItem("token", jwt);
+  const token = res.data?.token; // Adjust if the server response explicitly includes the token
+    
+  localStorage.setItem("token", token);
+    
   if(res.status !== 201 ){
       throw new Error("Unable to Signup");
   }
