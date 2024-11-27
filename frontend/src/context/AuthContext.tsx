@@ -41,8 +41,8 @@ export const AuthProvider = ({children}: {children: ReactNode }) => {
             setUser({ email: data.email, name: data.name});
             setIsLoggedIn(true);
         }
-        const verifyResponse = await verifyTokenFrontend();
-        console.log("Verify response:", verifyResponse);
+        // const verifyResponse = await verifyTokenFrontend();
+        // console.log("Verify response:", verifyResponse);
      };
 
     // function to signup
