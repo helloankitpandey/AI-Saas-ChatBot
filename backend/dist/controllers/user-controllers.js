@@ -57,6 +57,7 @@ export const userSignup = async (req, res, next) => {
             // expires,
             httpOnly: true,
             sameSite: "none",
+            secure: true,
             // signed: true, 
         });
         return res.status(201).json({
@@ -115,6 +116,7 @@ export const userLogin = async (req, res, next) => {
             // expires,
             httpOnly: true,
             sameSite: "none",
+            secure: true,
             // signed: true, 
         });
         // after that we send cookies from backend to frontend by the help of cookie-parser
@@ -188,10 +190,13 @@ export const userLogout = async (req, res, next) => {
             return res.status(401).send("Permission didn't match");
         }
         res.clearCookie(COOKIE_NAME, {
-            path: "/",
-            domain: "localhost",
+            // path: "/", 
+            // domain: "localhost", 
+            // expires,
             httpOnly: true,
-            signed: true,
+            sameSite: "none",
+            secure: true,
+            // signed: true, 
         });
         return res.status(200).json({
             message: "OK",

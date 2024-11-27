@@ -73,6 +73,7 @@ export const userSignup = async (req: Request, res: Response, next: NextFunction
             // expires,
             httpOnly: true,
             sameSite: "none",
+            secure: true,
             // signed: true, 
         });
 
@@ -148,6 +149,7 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
             // expires,
             httpOnly: true,
             sameSite: "none",
+            secure: true,
             // signed: true, 
         });
 
@@ -245,12 +247,15 @@ export const userLogout = async (req: Request, res: Response, next: NextFunction
         }
 
 
-        res.clearCookie(COOKIE_NAME, {
-            path: "/", 
-            domain: "localhost",
+        res.clearCookie(COOKIE_NAME, { 
+            // path: "/", 
+            // domain: "localhost", 
+            // expires,
             httpOnly: true,
-            signed: true, 
-        })
+            sameSite: "none",
+            secure: true,
+            // signed: true, 
+        });
 
  
         return res.status(200).json({
