@@ -5,20 +5,47 @@ export const loginUser = async (email: string, password: string) => {
     // storing jwt after login
     // const jwt = res.headers['authorization'];
     // localStorage.setItem("token", jwt);
-    try {
-      // const res = await axios.post("/user/login", { email, password });
-      // const jwt = res.headers['authorization'].split(' ')[1];
-      const jwt = res.data.token;
-      localStorage.setItem("token", jwt);
-    } catch (error) {
-      console.error("Error during login:", error);
+    const token = res.data?.token; // Adjust if the server response explicitly includes the token
+    if (token) {
+      localStorage.setItem("token", token);
     }
+
     if(res.status !== 200 ){
         throw new Error("Unable to login");
     }
     const data = await res.data;
     return data;
 }
+
+
+// Function to verify token on the client side (optional)
+export const verifyTokenFrontend = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token not found in localStorage");
+    }
+
+    // Send verification request to the backend
+    const res = await axios.post(
+       "user/verify-token",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true, // Include cookies for signed token verification
+      }
+    );
+
+    console.log("Token verified successfully:", res.data);
+    return res.data; // Return the verified data
+  } catch (error: any) {
+    console.error("Token verification failed:", error.response?.data || error.message); 
+    throw new Error(error.response?.data?.message || "Token verification failed");
+  }
+};
+
 
 
 

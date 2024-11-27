@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { checkAuthStatus, loginUser, logoutUser, signupUser } from "../helpers/api-communicator";
+import { checkAuthStatus, loginUser, logoutUser, signupUser, verifyTokenFrontend } from "../helpers/api-communicator";
 
 
 type User = {
@@ -41,6 +41,8 @@ export const AuthProvider = ({children}: {children: ReactNode }) => {
             setUser({ email: data.email, name: data.name});
             setIsLoggedIn(true);
         }
+        const verifyResponse = await verifyTokenFrontend();
+        console.log("Verify response:", verifyResponse);
      };
 
     // function to signup
