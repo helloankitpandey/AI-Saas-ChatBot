@@ -40,21 +40,21 @@ export const userSignup = async (req, res, next) => {
         // then set the current cookies
         // res.clearCookie("auth_token")
         // but we should store this name in other files
-        res.clearCookie(COOKIE_NAME, {
-            path: "/",
-            domain: "localhost",
-            httpOnly: true,
-            signed: true,
-        });
+        // res.clearCookie(COOKIE_NAME, {
+        //     path: "/", 
+        //     // domain: "localhost",
+        //     httpOnly: true,
+        //     // signed: true, 
+        // })
         // when password and email is correct 
         // then create a token for user-authentication
         const token = createToken(user._id.toString(), user.email, "7d");
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         res.cookie(COOKIE_NAME, token, {
-            path: "/",
-            domain: "localhost",
-            expires,
+            // path: "/", 
+            // domain: "localhost", 
+            // expires,
             httpOnly: true,
             // signed: true, 
         });
@@ -97,29 +97,30 @@ export const userLogin = async (req, res, next) => {
         // then set the current cookies
         // res.clearCookie("auth_token")
         // but we should store this name in other files
-        res.clearCookie(COOKIE_NAME, {
-            path: "/",
-            domain: "localhost",
-            httpOnly: true,
-            signed: true,
-        });
+        // res.clearCookie(COOKIE_NAME, {
+        //     path: "/", 
+        //     domain: "localhost",
+        //     httpOnly: true,
+        //     signed: true, 
+        // })
         // when password and email is correct 
         // then create a token for user-authentication
         const token = createToken(user._id.toString(), user.email, "7d");
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         res.cookie(COOKIE_NAME, token, {
-            path: "/",
-            domain: "localhost",
-            expires,
+            // path: "/", 
+            // domain: "localhost", 
+            // expires,
             httpOnly: true,
-            signed: true,
+            // signed: true, 
         });
         // after that we send cookies from backend to frontend by the help of cookie-parser
         // thius will do in app.ts file
         // app.use(cookieParser())
         // if all things are good then 
         return res.status(200).json({
+            token: token,
             message: "OK",
             name: user.name,
             email: user.email

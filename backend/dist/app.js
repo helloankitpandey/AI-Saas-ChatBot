@@ -9,7 +9,7 @@ const app = express();
 // for cookieparser 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 //middleare for cors error
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://ai-saas-chatbot.onrender.com", credentials: true }));
 // middlewares
 app.use(express.json());
 // remove it in production
