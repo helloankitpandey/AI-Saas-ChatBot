@@ -56,9 +56,10 @@ export const userSignup = async (req, res, next) => {
             domain: "localhost",
             expires,
             httpOnly: true,
-            signed: true,
+            // signed: true, 
         });
         return res.status(201).json({
+            token: token,
             message: "OK",
             name: user.name,
             email: user.email

@@ -49,12 +49,12 @@ export const userSignup = async (req: Request, res: Response, next: NextFunction
         // res.clearCookie("auth_token")
         // but we should store this name in other files
 
-        res.clearCookie(COOKIE_NAME, {
-            path: "/", 
-            domain: "localhost",
-            httpOnly: true,
-            signed: true, 
-        })
+        // res.clearCookie(COOKIE_NAME, {
+        //     path: "/", 
+        //     // domain: "localhost",
+        //     httpOnly: true,
+        //     // signed: true, 
+        // })
 
 
 
@@ -67,9 +67,9 @@ export const userSignup = async (req: Request, res: Response, next: NextFunction
         expires.setDate(expires.getDate() + 7);
 
         res.cookie(COOKIE_NAME, token, { 
-            path: "/", 
-            domain: "localhost", 
-            expires,
+            // path: "/", 
+            // domain: "localhost", 
+            // expires,
             httpOnly: true,
             // signed: true, 
         });
@@ -123,12 +123,12 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
         // res.clearCookie("auth_token")
         // but we should store this name in other files
 
-        res.clearCookie(COOKIE_NAME, {
-            path: "/", 
-            domain: "localhost",
-            httpOnly: true,
-            signed: true, 
-        })
+        // res.clearCookie(COOKIE_NAME, {
+        //     path: "/", 
+        //     domain: "localhost",
+        //     httpOnly: true,
+        //     signed: true, 
+        // })
 
 
 
@@ -141,11 +141,11 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
         expires.setDate(expires.getDate() + 7);
 
         res.cookie(COOKIE_NAME, token, { 
-            path: "/", 
-            domain: "localhost", 
-            expires,
+            // path: "/", 
+            // domain: "localhost", 
+            // expires,
             httpOnly: true,
-            signed: true, 
+            // signed: true, 
         });
 
         // after that we send cookies from backend to frontend by the help of cookie-parser
@@ -154,6 +154,7 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
         // if all things are good then 
         return res.status(200).json({
+            token: token,
             message: "OK",
             name: user.name, 
             email: user.email
