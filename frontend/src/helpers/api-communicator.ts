@@ -28,7 +28,7 @@ export const verifyTokenFrontend = async () => {
 
     // Send verification request to the backend
     const res = await axios.post(
-       "user/verify-token",
+       "user/auth-status",
       {},
       {
         headers: {
