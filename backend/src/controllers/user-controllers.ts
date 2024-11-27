@@ -77,6 +77,7 @@ export const userSignup = async (req: Request, res: Response, next: NextFunction
 
 
         return res.status(201).json({
+            token: token,
             message: "OK",
             name: user.name, 
             email: user.email
