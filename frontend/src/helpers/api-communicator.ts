@@ -3,8 +3,15 @@ import axios from "axios"
 export const loginUser = async (email: string, password: string) => {
     const res = await axios.post("/user/login", {email, password});
     // storing jwt after login
-    const jwt = res.headers['authorization'];
-    localStorage.setItem("token", jwt);
+    // const jwt = res.headers['authorization'];
+    // localStorage.setItem("token", jwt);
+    try {
+      const res = await axios.post("/user/login", { email, password });
+      const jwt = res.headers['authorization'].split(' ')[1];
+      localStorage.setItem("token", jwt);
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
     if(res.status !== 200 ){
         throw new Error("Unable to login");
     }
