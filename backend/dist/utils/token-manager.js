@@ -1,6 +1,7 @@
+// import { COOKIE_NAME } from './constants';
 // create a function that will create a token from the data
 import jwt from "jsonwebtoken";
-import { COOKIE_NAME } from "./constants.js";
+import User from "../models/User.js";
 export const createToken = (id, email, expiresIn) => {
     const payload = { id, email };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -30,22 +31,32 @@ export const createToken = (id, email, expiresIn) => {
 //     })
 // };
 export const verifyToken = async (req, res, next) => {
-    const token = req.signedCookies[`${COOKIE_NAME}`];
+    const token = req.cookies.COOKIE_NAME; // updated
     if (!token || token.trim() === "") {
         return res.status(401).json({ message: "Token Not Received" });
     }
-    return new Promise((resolve, reject) => {
-        return jwt.verify(token, process.env.JWT_SECRET, (err, success) => {
-            if (err) {
-                reject(err.message);
-                return res.status(401).json({ message: "Token Expired" });
-            }
-            else {
-                resolve();
-                res.locals.jwtData = success;
-                return next();
-            }
-        });
-    });
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decodedToken) {
+        return res.send("Invalid TOken");
+    }
+    const user = User.findById(decodedToken?.id);
+    if (!user) {
+        return res.send("User not found");
+    }
+    req.user = user;
+    next();
+    // return new Promise<void>((resolve, reject) => {
+    //   return jwt.verify(token, process.env.JWT_SECRET, (err, success) => {
+    //     if (err) {
+    //       reject(err.message);
+    //       return res.status(401).json({ message: "Token Expired" });
+    //     } else {
+    //       resolve();
+    //       res.locals.jwtData = success;
+    //       req.user = 
+    //       return next();
+    //     }
+    //   });
+    // });
 };
 //# sourceMappingURL=token-manager.js.map
