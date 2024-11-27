@@ -6,7 +6,7 @@ export const loginUser = async (email: string, password: string) => {
     // const jwt = res.headers['authorization'];
     // localStorage.setItem("token", jwt);
     try {
-      const res = await axios.post("/user/login", { email, password });
+      // const res = await axios.post("/user/login", { email, password });
       // const jwt = res.headers['authorization'].split(' ')[1];
       const jwt = res.data.token;
       localStorage.setItem("token", jwt);
