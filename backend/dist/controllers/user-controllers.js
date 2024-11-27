@@ -56,6 +56,7 @@ export const userSignup = async (req, res, next) => {
             // domain: "localhost", 
             // expires,
             httpOnly: true,
+            sameSite: "none",
             // signed: true, 
         });
         return res.status(201).json({
@@ -113,6 +114,7 @@ export const userLogin = async (req, res, next) => {
             // domain: "localhost", 
             // expires,
             httpOnly: true,
+            sameSite: "none",
             // signed: true, 
         });
         // after that we send cookies from backend to frontend by the help of cookie-parser

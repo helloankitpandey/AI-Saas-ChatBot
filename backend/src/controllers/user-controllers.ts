@@ -65,12 +65,14 @@ export const userSignup = async (req: Request, res: Response, next: NextFunction
 
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
+    
 
         res.cookie(COOKIE_NAME, token, { 
             // path: "/", 
             // domain: "localhost", 
             // expires,
             httpOnly: true,
+            sameSite: "none",
             // signed: true, 
         });
 
@@ -145,6 +147,7 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
             // domain: "localhost", 
             // expires,
             httpOnly: true,
+            sameSite: "none",
             // signed: true, 
         });
 
