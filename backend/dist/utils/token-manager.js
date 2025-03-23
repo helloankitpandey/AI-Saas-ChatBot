@@ -37,7 +37,7 @@ export const verifyToken = async (req, res, next) => {
     }
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     if (!decodedToken) {
-        return res.send("Invalid TOken");
+        return res.send("Invalid Token");
     }
     const user = User.findById(decodedToken?.id);
     if (!user) {

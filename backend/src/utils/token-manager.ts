@@ -51,13 +51,14 @@ export const verifyToken = async (
     res: Response,
     next: NextFunction
   ) => {
-    const token = req.cookies.COOKIE_NAME; // updated
+    // const token = req.cookies.auth; // updated
+    const token = req.headers.authorization?.split(" ")[1];
     if ( !token || token.trim() === "") {
       return res.status(401).json({ message: "Token Not Received" });
     }
     const decodedToken: any = jwt.verify(token, process.env.JWT_SECRET)
     if(!decodedToken){
-      return res.send("Invalid TOken")
+      return res.send("Invalid Token")
     }
 
     const user: any = User.findById(decodedToken?.id);
