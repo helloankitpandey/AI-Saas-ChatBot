@@ -1,5 +1,14 @@
 # AIBuddy Chat Bot
 
+### Image 1: Home page
+![Home page](https://github.com/helloankitpandey/AI-Saas-ChatBot/blob/70ac73d5aedf57fbbc110be95dedf78b4ff5496f/Screenshot%202025-05-06%20203630.png)
+
+### Image 2: Login page
+![Login page](https://github.com/helloankitpandey/AI-Saas-ChatBot/blob/70ac73d5aedf57fbbc110be95dedf78b4ff5496f/Screenshot%202025-05-06%20203654.png)
+
+### Image 3: Chat page
+![Chat page](https://github.com/helloankitpandey/AI-Saas-ChatBot/blob/70ac73d5aedf57fbbc110be95dedf78b4ff5496f/Screenshot%202025-05-06%20203720.png)
+
 ## Overview
 AIBuddy is a **secure and scalable AI chatbot** built with modern technologies. It leverages **OpenAI API** to generate real-time responses, ensuring a smooth and engaging chat experience. The chatbot is designed for **high concurrency** and provides strong authentication and data security.
 
